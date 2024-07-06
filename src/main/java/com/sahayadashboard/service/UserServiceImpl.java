@@ -18,30 +18,28 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserRepository uRepository;
 	
-	@Autowired
+	@Override
 	public User createUser(User user) {
 		return uRepository.save(user);
 	 }
 
-		
-	
-	@Autowired
+	@Override
 	public Optional<User> getUserByUuid(UUID uuid ){
 		return uRepository.findById(uuid);
 	}
 	
-	@Autowired
+	@Override
 	public List<User> getAllUser(){
 		return uRepository.findAll();
 	}
 	
-	@Autowired
+	@Override
 	public String deleteByUuid(UUID uuid) {
 		uRepository.deleteById(uuid);
 		return "Id Deleted Successfully";
 	}
 	
-	@Autowired
+	@Override
 	public User updateByUuid(UUID uuid, User user) {
 		Optional<User>usr=uRepository.findById(uuid);
 		User u=usr.get();
