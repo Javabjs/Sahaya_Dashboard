@@ -12,9 +12,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -32,7 +34,7 @@ public class UserController {
 	
 	}
 	
-	@GetMapping("/{UUID}")
+	@GetMapping("/{uuid}")
 	public Optional<User> getUserByUuid(@PathVariable String uuid){
 		return uService.getUserByUuid(UUID.fromString(uuid));
 		
@@ -44,6 +46,17 @@ public class UserController {
 		
 	}
 	
+	@DeleteMapping("/{uuid}")
+	public String deleteByUuid(@PathVariable String uuid) {
+		return uService.deleteByUuid(UUID.fromString(uuid));
+		
+	}
+	
+	@PutMapping("/{uuid}")
+	public User updateByUuid(@PathVariable String uuid,@RequestBody User user) {
+		return uService.updateByUuid(UUID.fromString(uuid), user);
+		
+	}
 	
 	
 	
