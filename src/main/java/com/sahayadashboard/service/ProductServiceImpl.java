@@ -47,6 +47,8 @@ public class ProductServiceImpl implements ProductService {
 		pr.setType(product.getType());
 		pr.setQuantity(product.getQuantity());
 		pr.setAlcohol_percentage(product.getAlcohol_percentage());
+		pr.setManufacture_date(product.getManufacture_date());
+		pr.setExpiry_date(product.getExpiry_date());
 		return pRepository.save(pr);
 	}
 	
