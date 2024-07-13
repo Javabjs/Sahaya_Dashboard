@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Optional<User> getUserByUuid(UUID uuid ){
 		return uRepository.findById(uuid);
+		
 	}
 	
 	@Override
@@ -51,8 +52,8 @@ public class UserServiceImpl implements UserService{
 		u.setState(user.getState());
 		u.setCountry(user.getCountry());
 		u.setPincode(user.getPincode());
+		u.setUpdatedAt(user.getUpdatedAt());
 		return uRepository.save(u);
-		
 		
 		
 		
