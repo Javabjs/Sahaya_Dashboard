@@ -45,10 +45,10 @@ public class Product {
 	private double alcohol_percentage;
 	
 	@Column(nullable = false)
-	private Date manufactureDate;
+	private Date manufacture_date;
 	
 	@Column(nullable =false)
-	private Date expiryDate;
+	private Date expiry_date;
 	
 	@CreationTimestamp
 	@Column(nullable=false,updatable=false)
