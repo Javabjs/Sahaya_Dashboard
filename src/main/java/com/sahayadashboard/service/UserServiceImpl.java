@@ -6,20 +6,27 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sahayadashboard.model.User;
 import com.sahayadashboard.repository.UserRepository;
+
+import ch.qos.logback.core.encoder.Encoder;
 
 @Service
 
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
+	private PasswordEncoder encoder;
+	
+	@Autowired
 	private UserRepository uRepository;
 	
 	@Override
 	public User createUser(User user) {
+		user.setPassword(encoder.encode( user.getPassword()));
 		return uRepository.save(user);
 	 }
 
