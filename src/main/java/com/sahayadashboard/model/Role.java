@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -24,8 +26,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name="role")
-
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class Role {
 	
 	
@@ -47,6 +49,10 @@ public class Role {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<User>users=new ArrayList<>();
 	
-	
+
+	public Role(String uuid){
+		this.id=UUID.fromString(uuid);
+	}
 
 }
+

@@ -18,7 +18,7 @@ import com.sahayadashboard.model.Role;
 import com.sahayadashboard.service.RoleService;
 
 @RestController
-@RequestMapping("/Role")
+@RequestMapping("/role")
 
 public class RoleController {
 	@Autowired
