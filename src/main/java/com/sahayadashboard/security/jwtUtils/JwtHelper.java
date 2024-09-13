@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.sahayadashboard.security.service.UserDetailsImpl;
+import com.sahayadashboard.service.RoleService;
 
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -57,11 +60,12 @@ public class JwtHelper {
 				.compact();
 	}
 	
-	public static List<String> getRolesFromToken(String token) {
-		Claims claims = extractClaims(token);
-		return claims.get("roles", List.class);
-	}
-	
+	public List<String> getRolesFromToken(String token, RoleService roleService) {
+        Claims claims = extractClaims(token);
+        String userUuid = claims.get("uuid", String.class);
+        UUID  = UUID.fromString(getUuidFromToken(token));
+        return roleService.getRoleByUuid(UUID);
+    }
 	
 	    private static Claims extractClaims(String token) {
 	        return Jwts
@@ -95,6 +99,7 @@ public class JwtHelper {
 
 		return false;
 	}
+
 
 }
 

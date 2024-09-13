@@ -13,6 +13,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -57,9 +59,19 @@ public class Product {
 	@UpdateTimestamp 
 	@Column(nullable=false,updatable=false)
 	private Date updatedAt;
-
+    
+	@OneToOne
+	@JoinColumn(name="stock_id")
+	private Stock stock;
 	
+	public Product() {
+		
+	}
 	
+	public Product(String uuid) {
+		this.id=UUID.fromString(uuid);
+	}
+		
 	
 
 }
